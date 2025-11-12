@@ -5,7 +5,7 @@ FROM node:18-bullseye
 WORKDIR /app
 
 # Install n8n globally
-RUN npm install -g n8n@1.75.1
+RUN npm install -g n8n@latest
 
 # Copy workflow file
 COPY n8n_free_ai_caller_gujarati.json /data/
