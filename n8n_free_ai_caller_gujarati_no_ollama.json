@@ -1,0 +1,105 @@
+{
+  "name": "FREE AI Calling Agent (Gujarati)",
+  "nodes": [
+    {
+      "name": "Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        300
+      ]
+    },
+    {
+      "name": "Config (Set)",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        300,
+        300
+      ]
+    },
+    {
+      "name": "Prepare Message",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        500,
+        300
+      ],
+      "parameters": {
+        "functionCode": "const msg = 'નમસ્તે! આ એક સ્વચાલિત યાદ અપાવવાની કૉલ છે. કૃપા કરી તમારા કામનું ધ્યાન રાખજો. આભાર!';\nreturn [{json:{phone:'+917862063415',lang:'gu-IN',message:msg,encodedText:encodeURIComponent(msg)}}];"
+      }
+    },
+    {
+      "name": "Build Call URL",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ],
+      "parameters": {
+        "functionCode": "const { phone, encodedText, lang } = $json;\nconst url = `https://api.callmebot.com/start.php?user=${encodeURIComponent(phone)}&text=${encodedText}&lang=${encodeURIComponent(lang)}`;\nreturn [{json:{url}}];"
+      }
+    },
+    {
+      "name": "Start Call",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        900,
+        300
+      ],
+      "parameters": {
+        "url": "={{$json[\"url\"]}}"
+      }
+    }
+  ],
+  "connections": {
+    "Trigger": {
+      "main": [
+        [
+          {
+            "node": "Config (Set)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config (Set)": {
+      "main": [
+        [
+          {
+            "node": "Prepare Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Message": {
+      "main": [
+        [
+          {
+            "node": "Build Call URL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Call URL": {
+      "main": [
+        [
+          {
+            "node": "Start Call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
