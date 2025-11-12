@@ -1,0 +1,239 @@
+{
+  "name": "FREE AI Calling Agent (Gujarati) — 2025-11-12",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "ManualTrigger",
+      "name": "Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "keepKeyMatches",
+        "specifyFormat": "keypair",
+        "pairs": {
+          "entries": [
+            {
+              "name": "phone",
+              "value": "+917862063415"
+            },
+            {
+              "name": "useOllama",
+              "value": true
+            },
+            {
+              "name": "callMeBotApiKey",
+              "value": ""
+            },
+            {
+              "name": "lang",
+              "value": "gu-IN"
+            },
+            {
+              "name": "fallbackMessage",
+              "value": "નમસ્તે! આ એક સ્વચાલિત યાદ અપાવવાની કૉલ છે. કૃપા કરી તમારા કામનું ધ્યાન રાખજો. આભાર!"
+            }
+          ]
+        }
+      },
+      "id": "ConfigSet",
+      "name": "Config (Set)",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        320,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "none",
+        "url": "http://localhost:11434/api/generate",
+        "options": {
+          "redirect": {
+            "redirect": true
+          }
+        },
+        "jsonParameters": true,
+        "sendBinaryData": false,
+        "sendQuery": false,
+        "sendHeaders": false,
+        "sendBody": true,
+        "bodyParametersJson": "{\"model\": \"llama3\", \"prompt\": \"\\u0aa8\\u0ac0\\u0a9a\\u0ac7 \\u0a86\\u0aaa\\u0ac7\\u0ab2\\u0ac0 \\u0aae\\u0abe\\u0ab9\\u0abf\\u0aa4\\u0ac0\\u0aa8\\u0abe \\u0a86\\u0aa7\\u0abe\\u0ab0\\u0ac7 15-20 \\u0ab8\\u0ac7\\u0a95\\u0aa8\\u0acd\\u0aa1\\u0aa8\\u0acb, \\u0aa8\\u0aae\\u0acd\\u0ab0 \\u0a85\\u0aa8\\u0ac7 \\u0ab8\\u0acd\\u0ab5\\u0abe\\u0aad\\u0abe\\u0ab5\\u0abf\\u0a95 \\u0a97\\u0ac1\\u0a9c\\u0ab0\\u0abe\\u0aa4\\u0ac0 \\u0aab\\u0acb\\u0aa8 \\u0ab8\\u0a82\\u0aa6\\u0ac7\\u0ab6 \\u0aac\\u0aa8\\u0abe\\u0ab5\\u0acb.\\n\\u0aaa\\u0a97\\u0ab2\\u0abe\\u0a82:\\n1) \\u0ab5\\u0acd\\u0aaf\\u0a95\\u0acd\\u0aa4\\u0abf\\u0aa8\\u0ac7 \\u0a85\\u0aad\\u0abf\\u0ab5\\u0abe\\u0aa6\\u0aa8 \\u0a95\\u0ab0\\u0acb.\\n2) \\u0aae\\u0ac1\\u0a96\\u0acd\\u0aaf \\u0aaf\\u0abe\\u0aa6 \\u0a85\\u0aaa\\u0abe\\u0ab5\\u0acb \\u0a8f\\u0a95 \\u0ab5\\u0abe\\u0a95\\u0acd\\u0aaf\\u0aae\\u0abe\\u0a82 \\u0a95\\u0ab9\\u0acb.\\n3) \\u0a95\\u0acb\\u0a88 \\u0aaa\\u0acd\\u0ab0\\u0ab6\\u0acd\\u0aa8 \\u0ab9\\u0acb\\u0aaf \\u0aa4\\u0acb \\u0a9c\\u0ab5\\u0abe\\u0aac \\u0a86\\u0aaa\\u0ab5\\u0abe \\u0aa4\\u0ac8\\u0aaf\\u0abe\\u0ab0 \\u0ab9\\u0acb\\u0ab5\\u0abe\\u0aa8\\u0ac0 \\u0ab5\\u0abe\\u0aa4 \\u0a95\\u0ab9\\u0ac7\\u0ab5\\u0abe \\u0aae\\u0abe\\u0a9f\\u0ac7 \\u0a8f\\u0a95 \\u0ab5\\u0abe\\u0a95\\u0acd\\u0aaf \\u0a89\\u0aae\\u0ac7\\u0ab0\\u0acb.\\n4) \\u0ab8\\u0a82\\u0aa6\\u0ac7\\u0ab6\\u0aa8\\u0ac7 \\u0ab6\\u0abf\\u0ab8\\u0acd\\u0aa4\\u0aaa\\u0ac2\\u0ab0\\u0acd\\u0ab5\\u0a95 \\u0ab8\\u0aae\\u0abe\\u0aaa\\u0acd\\u0aa4\\u0abf \\u0a86\\u0aaa\\u0acb.\\n\\u0a89\\u0aa6\\u0abe\\u0ab9\\u0ab0\\u0aa3 \\u0a9f\\u0acb\\u0aa8: \\u0aae\\u0abf\\u0aa4\\u0acd\\u0ab0\\u0aa4\\u0acd\\u0ab5\\u0aaa\\u0ac2\\u0ab0\\u0acd\\u0aa3, \\u0a9f\\u0ac2\\u0a82\\u0a95\\u0acb, \\u0ab8\\u0acd\\u0aaa\\u0ab7\\u0acd\\u0a9f.\\n\\n\\u0a85\\u0ab8\\u0ab0\\u0aa6\\u0abe\\u0ab0 \\u0ab8\\u0a82\\u0aa6\\u0ac7\\u0ab6 \\u0ab2\\u0a96\\u0acb:\\n\"}"
+      },
+      "id": "Ollama",
+      "name": "Generate (Ollama, optional)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        560,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Extract Gujarati message from Ollama response; if not present, use fallback\n// Ollama /api/generate streams tokens; some setups respond as {response: \"...\"} once done.\n// We try to handle both cases gracefully.\nconst item = items[0] || { json: {} };\nconst cfg = $json; // merged data from previous Set node\n\nlet message = cfg.fallbackMessage;\ntry {\n  const body = item.json || {};\n  if (typeof body.response === 'string' && body.response.trim().length > 0) {\n    message = body.response.trim();\n  } else if (Array.isArray(body) && body.length) {\n    // If streaming chunks were captured by n8n as an array\n    const text = body.map(b => (b.response || '')).join('');\n    if (text.trim().length > 0) message = text.trim();\n  }\n} catch (e) {\n  // keep fallback\n}\n\n// Sanitize length (CallMeBot text limit safety)\nif (message.length > 300) {\n  message = message.slice(0, 300);\n}\n\nreturn [{\n  json: {\n    phone: cfg.phone,\n    lang: cfg.lang || 'gu-IN',\n    callMeBotApiKey: cfg.callMeBotApiKey || '',\n    message,\n    encodedText: encodeURIComponent(message)\n  }\n}];\n"
+      },
+      "id": "ChooseMessage",
+      "name": "Prepare Message (Function)",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 2,
+      "position": [
+        800,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Build the CallMeBot URL. If an API key is present (for WhatsApp text API),\n// use the whatsapp.php endpoint. Otherwise, use start.php (voice-call style).\nconst { phone, encodedText, callMeBotApiKey, lang } = $json;\n\nlet url = '';\nlet mode = '';\nif (callMeBotApiKey && callMeBotApiKey.trim().length > 0) {\n  // WhatsApp message API (requires prior activation to get apikey)\n  mode = 'whatsapp';\n  url = `https://api.callmebot.com/whatsapp.php?phone=${encodeURIComponent(phone)}&text=${encodedText}&apikey=${encodeURIComponent(callMeBotApiKey)}`;\n} else {\n  // Voice call starter (no key, may require enabling your number with CallMeBot)\n  mode = 'voice';\n  // lang param is best-effort; if unsupported, CallMeBot will default\n  url = `https://api.callmebot.com/start.php?user=${encodeURIComponent(phone)}&text=${encodedText}&lang=${encodeURIComponent(lang)}`;\n}\n\nreturn [{ json: { url, mode } }];\n"
+      },
+      "id": "BuildURL",
+      "name": "Build Call URL (Function)",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 2,
+      "position": [
+        1020,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "none",
+        "url": "={{$json[\"url\"]}}",
+        "options": {
+          "redirect": {
+            "redirect": true
+          }
+        }
+      },
+      "id": "CallHTTP",
+      "name": "Start Free Call (HTTP Request)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        1240,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "keepKeyMatches",
+        "specifyFormat": "keypair",
+        "pairs": {
+          "entries": [
+            {
+              "name": "status",
+              "value": "queued"
+            },
+            {
+              "name": "timestamp",
+              "value": "={{$now}}"
+            },
+            {
+              "name": "destination",
+              "value": "={{$json[\"url\"]}}"
+            },
+            {
+              "name": "note",
+              "value": "If you don't receive the call, make sure your number is enabled in CallMeBot and/ or use the WhatsApp API with apikey."
+            }
+          ]
+        }
+      },
+      "id": "LogSet",
+      "name": "Log (Set)",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1460,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "notes": "🆓 FREE AI CALLING AGENT (Gujarati)\n\nHow it works:\n1) Optional: Generates a Gujarati message using local Ollama at http://localhost:11434 (model: llama3).\n   - If Ollama is not running, it will use a built-in Gujarati fallback message.\n2) Builds a CallMeBot URL.\n   - If you put your WhatsApp API key in 'Config (Set)' → callMeBotApiKey, it sends a free WhatsApp message.\n   - If you leave apikey empty, it uses the voice-call style endpoint (start.php). Some numbers may need enabling with CallMeBot first (free).\n3) Triggers the call/message via HTTP.\n\nSetup (fully free):\n• Ollama (optional AI text): https://ollama.com/ → `ollama run llama3`\n• Or skip Ollama by setting Config.useOllama = false and it will just use the fallback Gujarati text.\n\nTips:\n• Keep message under ~300 chars for best reliability.\n• For two-way voice via SIP (Linphone/Asterisk) + local TTS, add a second branch with Execute Command nodes to dial and play audio.\n"
+      },
+      "id": "Notes",
+      "name": "📒 Notes",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        920,
+        120
+      ]
+    }
+  ],
+  "connections": {
+    "Trigger": {
+      "main": [
+        [
+          {
+            "node": "Config (Set)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config (Set)": {
+      "main": [
+        [
+          {
+            "node": "Generate (Ollama, optional)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate (Ollama, optional)": {
+      "main": [
+        [
+          {
+            "node": "Prepare Message (Function)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Message (Function)": {
+      "main": [
+        [
+          {
+            "node": "Build Call URL (Function)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Call URL (Function)": {
+      "main": [
+        [
+          {
+            "node": "Start Free Call (HTTP Request)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start Free Call (HTTP Request)": {
+      "main": [
+        [
+          {
+            "node": "Log (Set)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
